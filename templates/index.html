@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saksham Anand</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #f9f9f9;
+            --text-color: #333;
+            --header-background: #333;
+            --header-text: white;
+            --link-color: #007bff;
+            --link-hover: #0056b3;
+            --button-background: #007bff;
+            --button-hover: #0056b3;
+            --card-background: #fff;
+            --box-shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --background-color: #121212;
+            --text-color: #e0e0e0;
+            --header-background: #1f1f1f;
+            --header-text: #e0e0e0;
+            --link-color: #bb86fc;
+            --link-hover: #3700b3;
+            --button-background: #bb86fc;
+            --button-hover: #3700b3;
+            --card-background: #1f1f1f;
+            --box-shadow: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            background-color: var(--header-background);
+            color: var(--header-text);
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: var(--header-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--link-hover);
+        }
+
+        #theme-toggle {
+            background: none;
+            border: none;
+            color: var(--header-text);
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        #theme-toggle:hover {
+            color: var(--link-hover);
+        }
+
+        section {
+            padding: 100px 20px 60px;
+            margin-top: 60px;
+        }
+
+        #about, #contact, #gallery, #projects, #blog, #services, #skills, #testimonials {
+            padding: 60px 20px;
+            background-color: var(--card-background);
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px var(--box-shadow);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        p {
+            text-align: center;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .image-container img {
+            width: 30%;
+            transition: transform 0.3s;
+            border-radius: 8px;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.1);
+        }
+
+        .project-item, .testimonial {
+            background-color: var(--card-background);
+            padding: 20px;
+            margin: 20px auto;
+            box-shadow: 0 0 10px var(--box-shadow);
+            max-width: 800px;
+            border-radius: 8px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .project-item h3, .testimonial h3 {
+            margin-bottom: 10px;
+        }
+
+        .skills {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .skill {
+            width: 30%;
+            margin: 10px 0;
+        }
+
+        .skill-bar {
+            background-color: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 100%;
+            height: 20px;
+            margin: 10px 0;
+        }
+
+        .skill-bar-fill {
+            background-color: #007bff;
+            height: 100%;
+            transition: width 0.3s;
+        }
+
+        [data-theme="dark"] .skill-bar {
+            background-color: #444;
+        }
+
+        [data-theme="dark"] .skill-bar-fill {
+            background-color: #bb86fc;
+        }
+
+        footer {
+            background-color: var(--header-background);
+            color: var(--header-text);
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--link-color);
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--link-hover);
+        }
+
+        #gallery {
+            text-align: center;
+        }
+
+        #gallery img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Saksham Anand</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <!-- Toggle Switch -->
+                    <button id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I am a 3rd year Computer Science student specializing in Software Development at the University of Alberta. Passionate about building technology that solves real-world problems.</p>
+        <p>Check out my work on <a href="https://github.com/your-github-username" target="_blank">GitHub</a>.</p>
+    </section>
+
+    <section id="skills">
+        <h2>My Skills</h2>
+        <div class="skills">
+            <div class="skill">
+                <h4>Python</h4>
+                <div class="skill-bar">
+                    <div class="skill-bar-fill" style="width: 90%;"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <h4>JavaScript</h4>
+                <div class="skill-bar">
+                    <div class="skill-bar-fill" style="width: 80%;"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <h4>Machine Learning</h4>
+                <div class="skill-bar">
+                    <div class="skill-bar-fill" style="width: 70%;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <p>Here are some of the projects I've worked on:</p>
+        <div class="project-item">
+            <h3>Image Processor</h3>
+            <p>A Python-based tool that applies image processing techniques like blurring, edge detection, and sharpening.</p>
+            <a href="https://github.com/your-github-username/image-processor" target="_blank">View on GitHub</a>
+        </div>
+        <div class="project-item">
+            <h3>Weather App</h3>
+            <p>A JavaScript-based web application that fetches real-time weather data using an API.</p>
+            <a href="https://github.com/your-github-username/weather-app" target="_blank">View on GitHub</a>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="image-container">
+            <img src="/static/tech1.jpg" alt="Tech Image 1">
+            <img src="/static/tech2.jpg" alt="Tech Image 2">
+            <img src="/static/tech3.jpg" alt="Tech Image 3">
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <h2>Testimonials</h2>
+        <div class="testimonial">
+            <h3>Client Name</h3>
+            <p>"Saksham did an excellent job on our project! Highly recommend."</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>You can reach me via email at sakshamanand@example.com</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Saksham Anand. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeToggle.innerHTML = '🌙'; // Moon icon for light mode
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '🌞'; // Sun icon for dark mode
+            }
+        });
+    </script>
+</body>
+
+</html>
