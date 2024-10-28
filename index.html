@@ -49,12 +49,12 @@
             color: var(--header-text);
             padding: 10px 0;
             text-align: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
+            position: sticky; /* Change to sticky */
+            top: 0; /* Pin to the top */
             z-index: 1000;
             transition: background-color 0.3s, color 0.3s;
         }
+
 
         nav ul {
             list-style-type: none;
@@ -63,6 +63,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         nav ul li {
@@ -95,10 +96,10 @@
 
         section {
             padding: 100px 20px 60px;
-            margin-top: 60px;
+            margin-top: -60px;
         }
 
-        #about, #contact, #gallery, #projects, #blog, #services, #skills, #testimonials {
+        #about, #contact, #gallery, #projects, #blog, #services, #skills {
             padding: 60px 20px;
             background-color: var(--card-background);
             margin: 20px 0;
@@ -211,9 +212,41 @@
             height: auto;
             border-radius: 8px;
         }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+            nav ul li {
+                margin: 5px 0;
+            }
+            .image-container img {
+                width: 80%; /* Resize images to fit the mobile screen */
+            }
+            .skills .skill {
+                width: 100%; /* Full width for skill bars */
+                margin: 10px 0;
+            }
+            header h1 {
+                font-size: 1.5em; /* Adjust font size */
+            }
+            #theme-toggle {
+                font-size: 1em;
+            }
+            section {
+                padding: 120px 10px 60px;
+                margin-top: -80px;
+            }
+            h1, h2 {
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 1em;
+            }
+        }
+
     </style>
 </head>
-
 <body>
     <header>
         <h1>Saksham Anand</h1>
@@ -223,7 +256,6 @@
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li>
                     <!-- Toggle Switch -->
@@ -236,7 +268,7 @@
     <section id="about">
         <h2>About Me</h2>
         <p>I am a 3rd year Computer Science student specializing in Software Development at the University of Alberta. Passionate about building technology that solves real-world problems.</p>
-        <p>Check out my work on <a href="https://github.com/your-github-username" target="_blank">GitHub</a>.</p>
+        <p>Check out my work on <a href="https://github.com/Saksham186?tab=repositories" target="_blank">GitHub</a>.</p>
     </section>
 
     <section id="skills">
@@ -272,8 +304,9 @@
             <a href="https://github.com/your-github-username/image-processor" target="_blank">View on GitHub</a>
         </div>
         <div class="project-item">
-            <h3>Weather App</h3>
-            <p>A JavaScript-based web application that fetches real-time weather data using an API.</p>
+            <h3>Blackjack Game</h3>
+            <p>PyJack - Python Blackjack Game
+                Developed a Blackjack game in Python, incorporating key gameplay mechanics like card shuffling, player and dealer actions, hand evaluation, and winning conditions. Employed object-oriented principles to create a robust and modular game structure, enhancing skills in Python programming and game logic design.</p>
             <a href="https://github.com/your-github-username/weather-app" target="_blank">View on GitHub</a>
         </div>
     </section>
@@ -281,23 +314,16 @@
     <section id="gallery">
         <h2>Gallery</h2>
         <div class="image-container">
-            <img src="/static/tech1.jpg" alt="Tech Image 1">
-            <img src="/static/tech2.jpg" alt="Tech Image 2">
-            <img src="/static/tech3.jpg" alt="Tech Image 3">
+            <img src="../static/tech1.jpg" alt="Tech Image 1">
+            <img src="../static/tech2.jpg" alt="Tech Image 2">
+            <img src="../static/tech3.jpg" alt="Tech Image 3">
         </div>
     </section>
 
-    <section id="testimonials">
-        <h2>Testimonials</h2>
-        <div class="testimonial">
-            <h3>Client Name</h3>
-            <p>"Saksham did an excellent job on our project! Highly recommend."</p>
-        </div>
-    </section>
-
+   
     <section id="contact">
         <h2>Contact Me</h2>
-        <p>You can reach me via email at anandsaksham804@gmail.com</p>
+        <p>You can reach me via email at sakshamanand@example.com</p>
     </section>
 
     <footer>
