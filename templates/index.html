@@ -94,8 +94,9 @@
         }
 
         section {
-            padding: 100px 20px 60px;
-            scroll-margin-top: 80px; /* Adjusts section position when using sticky header */
+            padding-top: 80px; /* Adjust space for sticky header */
+            padding-bottom: 60px;
+            scroll-margin-top: 80px; /* Adjusts scroll position for sticky header */
         }
 
         #about, #contact, #gallery, #projects, #blog, #services, #skills, #testimonials {
@@ -143,40 +144,6 @@
             transition: background-color 0.3s, box-shadow 0.3s;
         }
 
-        .skills {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .skill {
-            width: 30%;
-            margin: 10px 0;
-        }
-
-        .skill-bar {
-            background-color: #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-            width: 100%;
-            height: 20px;
-            margin: 10px 0;
-        }
-
-        .skill-bar-fill {
-            background-color: #007bff;
-            height: 100%;
-            transition: width 0.3s;
-        }
-
-        [data-theme="dark"] .skill-bar {
-            background-color: #444;
-        }
-
-        [data-theme="dark"] .skill-bar-fill {
-            background-color: #bb86fc;
-        }
-
         footer {
             background-color: var(--header-background);
             color: var(--header-text);
@@ -207,7 +174,7 @@
             height: auto;
             border-radius: 8px;
         }
-        
+
         @media (max-width: 768px) {
             nav ul {
                 flex-direction: column;
@@ -218,12 +185,8 @@
             .image-container img {
                 width: 80%;
             }
-            .skills .skill {
-                width: 100%;
-                margin: 10px 0;
-            }
             section {
-                padding: 120px 10px 60px;
+                padding-top: 100px; /* Increase padding-top for mobile */
                 scroll-margin-top: 100px;
             }
             h1, h2 {
@@ -254,7 +217,12 @@
         </nav>
     </header>
 
-    <!-- Content Sections as before -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Brief introduction about yourself.</p>
+    </section>
+
+    <!-- Additional sections as before -->
 
     <footer>
         <p>&copy; 2024 Saksham Anand. All rights reserved.</p>
