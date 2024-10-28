@@ -11,6 +11,9 @@ header {
     color: white;
     text-align: center;
     padding: 1em 0;
+    position: sticky; /* Makes header stick to the top */
+    top: 0;
+    z-index: 1000; /* Keeps it above other content */
 }
 
 header nav ul {
@@ -37,6 +40,7 @@ section {
     padding: 2em;
     max-width: 800px;
     margin: auto;
+    scroll-margin-top: 80px; /* Offset for sticky header to prevent heading overlap */
 }
 
 h2 {
@@ -77,4 +81,16 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    section {
+        padding: 2em 1em; /* Reduces padding for smaller screens */
+        scroll-margin-top: 100px; /* Adjusted offset for sticky header */
+    }
+    
+    .image-container img {
+        max-width: 45%; /* Makes images larger on mobile */
+    }
 }
