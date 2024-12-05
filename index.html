@@ -252,13 +252,19 @@
         ReactDOM.render(<Skills />, document.getElementById('skills-root'));
 
         // Projects Component
-        const Project = ({ title, description, link }) => (
+        const Project = ({ title, description, link, image }) => (
             <div style={{
                 padding: '15px',
                 border: '1px solid #ddd',
                 marginBottom: '10px',
                 borderRadius: '8px'
-            }}>
+            }} className="project-item">
+                <img
+                    src={image}
+                    alt={title}
+                    style={{ width: '100%', borderRadius: '8px', transition: 'transform 0.3s' }}
+                    className="project-img"
+                />
                 <h3>{title}</h3>
                 <p>{description}</p>
                 <a href={link} target="_blank">View on GitHub</a>
@@ -267,17 +273,34 @@
 
         const Projects = () => {
             const projectData = [
-                { title: 'Image Processor', description: 'A Python-based tool for image processing.', link: 'https://github.com/Saksham186/Image-Processor-' },
-                { title: 'Blackjack Game', description: 'A Python-based Blackjack game.', link: 'https://github.com/Saksham186/OOPS_blackjack' },
-                { title: 'Renewable Energy Prediction', description: 'ML model for predicting renewable energy.', link: 'https://github.com/Saksham186/Renewable-energy-prediction' },
-                { title: 'Convolutional Neural Network (CNN) for Object Detection', description: 'Built a CNN model using TensorFlow/Keras to detect objects in video frames with real-time performance optimization.', link: 'https://github.com/Saksham186/CNN' }
+                {
+                    title: 'Image Processor',
+                    description: 'A Python-based tool for image processing.',
+                    link: 'https://github.com/Saksham186/Image-Processor-',
+                    image: '../static/mage1.jpg'
+                },
+                {
+                    title: 'Blackjack Game',
+                    description: 'A Python-based Blackjack game.',
+                    link: 'https://github.com/Saksham186/OOPS_blackjack',
+                    image: '../static/blackjack.jpg'
+                },
+                { title: 'Renewable Energy Prediction', description: 'ML model for predicting renewable energy.', link: 'https://github.com/Saksham186/Renewable-energy-prediction',image: '../static/blackjack.jpg'},
+                { title: 'Convolutional Neural Network (CNN) for Object Detection', description: 'Built a CNN model using TensorFlow/Keras to detect objects in video frames with real-time performance optimization.', link: 'https://github.com/Saksham186/CNN',image: '../static/blackjack.jpg'}
+
             ];
 
             return (
                 <section id="projects">
                     <h2>Projects</h2>
                     {projectData.map((project, index) => (
-                        <Project key={index} title={project.title} description={project.description} link={project.link} />
+                        <Project
+                            key={index}
+                            title={project.title}
+                            description={project.description}
+                            link={project.link}
+                            image={project.image}
+                        />
                     ))}
                 </section>
             );
