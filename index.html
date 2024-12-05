@@ -81,10 +81,14 @@
         }
 
         section {
-            padding: 100px 20px 60px; /* Ensures enough space inside the section */
-            margin-top: 60px; /* Adjusts for the fixed header */
-            scroll-margin-top: 80px; /* Adds space when scrolling via anchor links */
+            padding: 100px 20px 60px; /* Maintain spacing */
+            position: relative; /* Ensure positioning context */
         }
+        
+        [data-theme="dark"] {
+            scroll-padding-top: 70px; /* Creates a scrolling offset for fixed header */
+        }
+
 
 
         #about, #contact, #gallery, #projects, #blog, #services, #skills {
@@ -171,10 +175,12 @@
     </header>
 
     <section id="about">
+        <div style="height: 80px; visibility: hidden;"></div> <!-- Spacer -->
         <h2>About Me</h2>
         <p>I am a 3rd year Computer Science student specializing in Software Development at the University of Alberta. Passionate about building technology that solves real-world problems.</p>
         <p>Check out my work on <a href="https://github.com/Saksham186?tab=repositories" target="_blank">GitHub</a>.</p>
     </section>
+
 
     <section id="skills">
         <h2>My Skills</h2>
