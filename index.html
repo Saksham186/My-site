@@ -81,9 +81,11 @@
         }
 
         section {
-            padding: 100px 20px 60px;
-            margin-top: 60px;
+            padding: 100px 20px 60px; /* Ensures enough space inside the section */
+            margin-top: 60px; /* Adjusts for the fixed header */
+            scroll-margin-top: 80px; /* Adds space when scrolling via anchor links */
         }
+
 
         #about, #contact, #gallery, #projects, #blog, #services, #skills {
             padding: 60px 20px;
