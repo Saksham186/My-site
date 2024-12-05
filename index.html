@@ -7,6 +7,9 @@
     <title>Saksham Anand</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <style>
         :root {
             --background-color: #f9f9f9;
@@ -182,54 +185,11 @@
     </section>
 
 
-    <section id="skills">
-        <h2>My Skills</h2>
-        <div class="skills">
-            <div class="skill">
-                <h4>Python</h4>
-                <div class="skill-bar">
-                    <div class="skill-bar-fill" style="width: 90%;"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <h4>JavaScript</h4>
-                <div class="skill-bar">
-                    <div class="skill-bar-fill" style="width: 80%;"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <h4>Machine Learning</h4>
-                <div class="skill-bar">
-                    <div class="skill-bar-fill" style="width: 70%;"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div id="skills-root"></div>
 
-    <section id="projects">
-        <h2>Projects</h2>
-        <p>Here are some of the projects I've worked on:</p>
-        <div class="project-item">
-            <h3>Image Processor</h3>
-            <p>A Python-based tool that applies image processing techniques like blurring, edge detection, and sharpening.</p>
-            <a href="https://github.com/Saksham186/Image-Processor-" target="_blank">View on GitHub</a>
-        </div>
-        <div class="project-item">
-            <h3>Blackjack Game</h3>
-            <p>Developed a Blackjack game in Python, incorporating key gameplay mechanics like card shuffling, player and dealer actions, hand evaluation, and winning conditions. Employed object-oriented principles to create a robust and modular game structure, enhancing skills in Python programming and game logic design.</p>
-            <a href="https://github.com/Saksham186/OOPS_blackjack" target="_blank">View on GitHub</a>
-        </div>
-        <div class="project-item">
-            <h3>Renewable Energy Prediction</h3>
-            <p>Designed a machine learning model to predict renewable energy production based on weather patterns and historical data. Utilized Python libraries such as Pandas, NumPy, and Scikit-Learn for data preprocessing, feature engineering, and model training.</p>
-            <a href="https://github.com/Saksham186/Renewable-energy-prediction" target="_blank">View on GitHub</a>
-        </div>
-        <div class="project-item">
-            <h3>Convolutional Neural Network (CNN) for Frame Detection</h3>
-            <p>Built a CNN-based solution to detect objects within video frames. This project involved preprocessing datasets, designing and training the CNN model using TensorFlow/Keras, and deploying the model for real-time object detection.</p>
-            <a href="https://github.com/Saksham186/CNN" target="_blank">View on GitHub</a>
-        </div>
-    </section>
+
+    <div id="projects-root"></div>
+
 
     <section id="gallery">
         <h2>Gallery</h2>
@@ -248,18 +208,81 @@
     <footer>
         <p>&copy; 2024 Saksham Anand. All rights reserved.</p>
     </footer>
-    <script>
-        document.querySelectorAll('nav ul li a').forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80, // Adjust this value to match your header's height
-                    behavior: 'smooth'
-                });
-            });
-        });
+    <script type="text/babel">
+        // Skills Component
+        const SkillBar = ({ skill, level }) => {
+            return (
+                <div style={{ marginBottom: '15px' }}>
+                    <h4>{skill}</h4>
+                    <div style={{
+                        background: '#e0e0e0',
+                        borderRadius: '8px',
+                        overflow: 'hidden',
+                        height: '20px',
+                        width: '100%'
+                    }}>
+                        <div style={{
+                            background: '#007bff',
+                            width: `${level}%`,
+                            height: '100%',
+                            transition: 'width 0.5s ease'
+                        }}></div>
+                    </div>
+                </div>
+            );
+        };
+
+        const Skills = () => {
+            const skillsData = [
+                { skill: 'Python', level: 90 },
+                { skill: 'JavaScript', level: 80 },
+                { skill: 'Machine Learning', level: 70 }
+            ];
+
+            return (
+                <section id="skills">
+                    <h2>My Skills</h2>
+                    {skillsData.map((skill, index) => (
+                        <SkillBar key={index} skill={skill.skill} level={skill.level} />
+                    ))}
+                </section>
+            );
+        };
+
+        ReactDOM.render(<Skills />, document.getElementById('skills-root'));
+
+        // Projects Component
+        const Project = ({ title, description, link }) => (
+            <div style={{
+                padding: '15px',
+                border: '1px solid #ddd',
+                marginBottom: '10px',
+                borderRadius: '8px'
+            }}>
+                <h3>{title}</h3>
+                <p>{description}</p>
+                <a href={link} target="_blank">View on GitHub</a>
+            </div>
+        );
+
+        const Projects = () => {
+            const projectData = [
+                { title: 'Image Processor', description: 'A Python-based tool for image processing.', link: 'https://github.com/Saksham186/Image-Processor-' },
+                { title: 'Blackjack Game', description: 'A Python-based Blackjack game.', link: 'https://github.com/Saksham186/OOPS_blackjack' },
+                { title: 'Renewable Energy Prediction', description: 'ML model for predicting renewable energy.', link: 'https://github.com/Saksham186/Renewable-energy-prediction' }
+            ];
+
+            return (
+                <section id="projects">
+                    <h2>Projects</h2>
+                    {projectData.map((project, index) => (
+                        <Project key={index} title={project.title} description={project.description} link={project.link} />
+                    ))}
+                </section>
+            );
+        };
+
+        ReactDOM.render(<Projects />, document.getElementById('projects-root'));
     </script>
 </body>
 
